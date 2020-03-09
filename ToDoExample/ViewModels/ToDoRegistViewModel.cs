@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+
 namespace ToDoExample.ViewModels
 {
     /// <summary>
@@ -14,11 +16,13 @@ namespace ToDoExample.ViewModels
         /// <summary>
         /// タイトル
         /// </summary>
+        [DisplayName("タイトル")]
         public string Title { get; set; }
 
         /// <summary>
         /// コンテンツ
         /// </summary>
+        [DisplayName("内容")]
         public string Content { get; set; }
 
         /// <summary>

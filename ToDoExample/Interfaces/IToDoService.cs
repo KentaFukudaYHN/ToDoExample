@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using ToDoExample.Entities;
 
 namespace ToDoExample.Interfaces
 {
@@ -7,6 +9,11 @@ namespace ToDoExample.Interfaces
     /// </summary>
     public interface IToDoService
     {
+        /// <summary>
+        /// ToDoの一覧取得
+        /// </summary>
+        List<ToDoItem> GetToDoItems();
+
         /// <summary>
         /// 登録
         /// </summary>

@@ -7,13 +7,13 @@ namespace ToDoExample.Data
     /// <summary>
     /// ToDoDbContext
     /// </summary>
-    public class ToDoContext: DbContext, IDbContext
+    public class ToDoContext: DbContext
     {
         /// <summary>
         /// コンストラクタ
         /// </summary>
         /// <param name="options"></param>
-        public ToDoContext(DbContextOptions options) : base(options) { }
+        public ToDoContext(DbContextOptions options) : base(options) {}
 
         /// <summary>
         /// ToDo情報

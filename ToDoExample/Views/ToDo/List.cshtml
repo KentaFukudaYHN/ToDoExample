@@ -1,0 +1,17 @@
+﻿@model ToDoListViewModel
+
+<style>
+    .card{
+        margin: 10px 0;
+        cursor:pointer;
+    }
+</style>
+
+@foreach(var item in Model.Items)
+{
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@item.title</h4>
+            </div>
+        </div>
+}

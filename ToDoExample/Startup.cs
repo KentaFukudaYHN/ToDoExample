@@ -22,16 +22,16 @@ namespace ToDoExample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            //デバックの実行をし直さなくても、リアルタイムにcshtmlが反映される様に設定
+            services
+                .AddControllersWithViews()
+                .AddRazorRuntimeCompilation();
 
             //DIコンテナにDbContext登録
             services.AddDbContext<ToDoContext>(o =>
             {
                 o.UseMySql(Configuration.GetConnectionString("DefaultConnection"));
             });
-
-            //DIコンテナにDbContext登録
-            services.AddScoped<IDbContext, ToDoContext>();
 
             //DIコンテナにrepository登録
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));

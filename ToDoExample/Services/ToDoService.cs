@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ToDoExample.Entities;
 using ToDoExample.Interfaces;
 
@@ -18,6 +19,20 @@ namespace ToDoExample.Services
         public ToDoService(IRepository<ToDoItem> repository)
         {
             _repository = repository;
+        }
+
+        /// <summary>
+        /// ToDoの一覧取得
+        /// </summary>
+        /// <returns></returns>
+        public List<ToDoItem> GetToDoItems()
+        {
+            var items = _repository.GetAll();
+
+            if (items == null)
+                return new List<ToDoItem>();
+
+            return items;
         }
 
         /// <summary>

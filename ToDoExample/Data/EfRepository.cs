@@ -1,16 +1,27 @@
-﻿using ToDoExample.Interfaces;
+﻿using System.Collections.Generic;
+using ToDoExample.Interfaces;
+using System.Linq;
 
 namespace ToDoExample.Data
 {
-    public class EfRepository<T> : IRepository<T>
+    public class EfRepository<T> : IRepository<T> where T : class
     {
-        private IDbContext _db;
+        private ToDoContext _db;
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public EfRepository(IDbContext db)
+        public EfRepository(ToDoContext db)
         {
             _db = db;
+        }
+
+        /// <summary>
+        /// 全件取得
+        /// </summary>
+        /// <returns></returns>
+        public List<T> GetAll()
+        {
+           return _db.Set<T>().ToList();
         }
 
         /// <summary>

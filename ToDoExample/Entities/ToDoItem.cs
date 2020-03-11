@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using ToDoExample.Enums;
 
 namespace ToDoExample.Entities
 {
@@ -17,6 +17,11 @@ namespace ToDoExample.Entities
         /// 内容
         /// </summary>
         public string Content { get; set; }
+
+        /// <summary>
+        /// 状態
+        /// </summary>
+        public ToDoState State { get; set; }
 
         /// <summary>
         /// 更新日時

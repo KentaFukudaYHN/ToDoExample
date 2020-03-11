@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using ToDoExample.Interfaces;
 using System.Linq;
+using ToDoExample.Entities;
 
 namespace ToDoExample.Data
 {
-    public class EfRepository<T> : IRepository<T> where T : class
+    public class EfRepository<T> : IRepository<T> where T : BaseEntity
     {
         private ToDoContext _db;
         /// <summary>
@@ -13,6 +14,16 @@ namespace ToDoExample.Data
         public EfRepository(ToDoContext db)
         {
             _db = db;
+        }
+
+        /// <summary>
+        /// IDで取得
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public T GetById(string id)
+        {
+            return _db.Set<T>().Where(x => x.ID == id).FirstOrDefault();
         }
 
         /// <summary>

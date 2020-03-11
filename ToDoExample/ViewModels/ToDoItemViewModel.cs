@@ -14,19 +14,19 @@ namespace ToDoExample.ViewModels
         /// <summary>
         /// ID
         /// </summary>
-        public string id => _entity.ID;
+        public string ID => _entity.ID;
 
         /// <summary>
         /// タイトル
         /// </summary>
         [DisplayName("タイトル")]
-        public string title => _entity.Titile;
+        public string Title => _entity.Titile;
 
         /// <summary>
         /// 内容
         /// </summary>
         [DisplayName("内容")]
-        public string content => _entity.Content;
+        public string Content => _entity.Content;
 
         /// <summary>
         /// コンストラクタ

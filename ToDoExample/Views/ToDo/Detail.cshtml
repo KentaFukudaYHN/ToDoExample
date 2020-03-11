@@ -1,0 +1,22 @@
+﻿@model ToDoItemViewModel
+
+<style>
+.hide {
+    display:none;
+}
+</style>
+
+@using (Html.BeginForm(new { @class="detail-form" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(x => x.Title)
+        @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @readonly = "readonly"})
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Content)
+        @Html.TextAreaFor(x => x.Content, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <input type="submit" value="登録" class="form-control hide">
+}
+

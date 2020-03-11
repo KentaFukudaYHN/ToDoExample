@@ -9,9 +9,22 @@
 
 @foreach(var item in Model.Items)
 {
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">@item.title</h4>
-            </div>
+    <div class="card todo-item" data-id="@(item.ID)">
+        <div class="card-body">
+            <h4 class="card-title">@item.Title</h4>
         </div>
+    </div>
 }
+
+<script>
+$(function () {
+    //ToDoをクリック
+    $('.todo-item').on('click', function () {
+        //ToDoのIDをData属性から取得
+        const id = $(this).data('id');
+
+        //ToDoの詳細画面に遷移
+        window.location = '@Url.Action("Detail", "ToDo")' + '?id=' + id;
+    });
+})
+</script>

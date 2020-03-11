@@ -6,14 +6,8 @@ namespace ToDoExample.Entities
     /// <summary>
     /// ToDo情報
     /// </summary>
-    public class ToDoItem
+    public class ToDoItem : BaseEntity
     {
-        /// <summary>
-        /// ID
-        /// </summary>
-        [Key]
-        public string ID { get; set; }
-
         /// <summary>
         /// タイトル
         /// </summary>

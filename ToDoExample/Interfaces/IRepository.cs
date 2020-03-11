@@ -10,6 +10,13 @@ namespace ToDoExample.Interfaces
     public interface IRepository<T>
     {
         /// <summary>
+        /// IDで取得
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        T GetById(string id);
+
+        /// <summary>
         /// 全件取得
         /// </summary>
         /// <returns></returns>

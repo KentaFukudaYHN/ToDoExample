@@ -10,6 +10,13 @@ namespace ToDoExample.Interfaces
     public interface IToDoService
     {
         /// <summary>
+        /// ToDo取得
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        ToDoItem GetItem(string id);
+
+        /// <summary>
         /// ToDoの一覧取得
         /// </summary>
         List<ToDoItem> GetToDoItems();

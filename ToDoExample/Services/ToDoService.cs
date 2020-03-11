@@ -22,11 +22,27 @@ namespace ToDoExample.Services
         }
 
         /// <summary>
+        /// ToDo取得
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ToDoItem GetItem(string id)
+        {
+            var item = _repository.GetById(id);
+
+            if (item == null)
+                throw new ArgumentException("IDに一致するToDoがありません");
+
+            return item;
+        }
+
+        /// <summary>
         /// ToDoの一覧取得
         /// </summary>
         /// <returns></returns>
         public List<ToDoItem> GetToDoItems()
         {
+            //ToDoを全件取得
             var items = _repository.GetAll();
 
             if (items == null)
@@ -43,6 +59,7 @@ namespace ToDoExample.Services
         /// <returns></returns>
         public void Regist(string title, string content)
         {
+            //登録用のEntityを生成
             var entity = new ToDoItem()
             {
                 ID = Guid.NewGuid().ToString(),

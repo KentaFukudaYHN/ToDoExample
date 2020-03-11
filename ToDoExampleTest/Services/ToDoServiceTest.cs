@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Moq;
 using ToDoExample.Entities;
+using ToDoExample.Enums;
 using ToDoExample.Interfaces;
 using ToDoExample.Services;
 using Xunit;
@@ -96,7 +97,7 @@ namespace ToDoExampleTest.Services
             var todoService = new ToDoService(repository.Object);
 
             //repositoryのGetByIdの返り値をnullに設定
-            var id = "notExitId";
+            var id = "testId";
             repository.Setup(x => x.GetById(id)).Returns((ToDoItem)null);
 
             //取得処理
@@ -127,6 +128,56 @@ namespace ToDoExampleTest.Services
 
             //登録処理が呼ばれたか確認
             repository.Verify(x => x.Regist(It.IsAny<ToDoItem>()));
+        }
+
+        /// <summary>
+        /// ToDo完了テスト
+        /// </summary>
+        [Fact]
+        public void Complete()
+        {
+            //repositoryのMockデータを生成
+            var repository = new Mock<IRepository<ToDoItem>>();
+
+            //ToDoServiceを生成
+            var todoService = new ToDoService(repository.Object);
+
+            //repositoryのメソッド設定
+            var id = "testId";
+            var updateTarget = new ToDoItem();
+            repository.Setup(x => x.GetById(id)).Returns(updateTarget);
+            repository.Setup(x => x.Update(updateTarget));
+
+            //完了処理を実行
+            todoService.Complete(id);
+
+            //repositoryの更新メソッドが実行されたか確認
+            updateTarget.State = ToDoState.Complete;
+            repository.Verify(x => x.Update(updateTarget));
+        }
+
+        /// <summary>
+        /// ToDo完了テスト/存在しないToDoの完了
+        /// </summary>
+        [Fact]
+        public void CompleteWithNotExist()
+        {
+            //repositoryのMockデータを生成
+            var repository = new Mock<IRepository<ToDoItem>>();
+
+            //ToDoServiceを生成
+            var todoService = new ToDoService(repository.Object);
+
+            //repositoryのメソッド設定
+            var id = "testId";
+            repository.Setup(x => x.GetById(id)).Returns((ToDoItem)null);
+            repository.Setup(x => x.Update(null));
+
+            //ToDo完了
+            Action completeAction = () => todoService.Complete(id);
+
+            //ArgumentExeptionの確認
+            Assert.Throws<ArgumentException>(completeAction);
         }
     }
 }

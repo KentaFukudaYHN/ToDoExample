@@ -80,6 +80,10 @@ namespace ToDoExample.Services
         public void Complete(string id)
         {
             var target = this.GetItem(id);
+
+            if (target == null)
+                throw new ArgumentException("IDに一致するToDoがありません");
+
             target.State = ToDoState.Complete;
             _repository.Update(target);
         }

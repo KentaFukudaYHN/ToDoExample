@@ -2,6 +2,7 @@
 using ToDoExample.Interfaces;
 using System.Linq;
 using ToDoExample.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ToDoExample.Data
 {
@@ -43,6 +44,16 @@ namespace ToDoExample.Data
         public void Regist(T entitiy)
         {
             _db.Add(entitiy);
+            _db.SaveChanges();
+        }
+
+        /// <summary>
+        /// 更新
+        /// </summary>
+        /// <param name="entity"></param>
+        public void Update(T entity)
+        {
+            _db.Entry(entity).State = EntityState.Modified;
             _db.SaveChanges();
         }
     }

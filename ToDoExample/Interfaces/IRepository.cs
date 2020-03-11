@@ -27,6 +27,12 @@ namespace ToDoExample.Interfaces
         /// </summary>
         /// <param name="entitiy"></param>
         /// <returns></returns>
-        void Regist(T entitiy);
+        void Regist(T entity);
+
+        /// <summary>
+        /// 更新
+        /// </summary>
+        /// <param name="entity"></param>
+        void Update(T entity);
     }
 }

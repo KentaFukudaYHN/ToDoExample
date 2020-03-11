@@ -6,11 +6,19 @@
 }
 </style>
 
-@using (Html.BeginForm(new { @class="detail-form" }))
+<div>
+    @using (Html.BeginForm("Complete", "ToDo", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.ID);
+        <input type="submit" id="complateBtn" class="btn-success" value="完了" />
+    }
+</div>
+
+@using (Html.BeginForm(new { @class = "detail-form" }))
 {
     <div class="form-group">
         @Html.LabelFor(x => x.Title)
-        @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @readonly = "readonly"})
+        @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @readonly = "readonly" })
     </div>
 
     <div class="form-group">
@@ -19,4 +27,3 @@
     </div>
     <input type="submit" value="登録" class="form-control hide">
 }
-

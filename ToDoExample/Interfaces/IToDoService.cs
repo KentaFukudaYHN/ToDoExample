@@ -27,5 +27,11 @@ namespace ToDoExample.Interfaces
         /// <param name="title"></param>
         /// <param name="content"></param>
         void Regist(string title, string content);
+
+        /// <summary>
+        /// ToDo完了
+        /// </summary>
+        /// <param name="id"></param>
+        void Complete(string id);
     }
 }

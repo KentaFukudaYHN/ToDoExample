@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ToDoExample.Entities;
+using ToDoExample.Enums;
 using ToDoExample.Interfaces;
 
 namespace ToDoExample.Services
@@ -70,6 +71,17 @@ namespace ToDoExample.Services
             };
 
             _repository.Regist(entity);
+        }
+
+        /// <summary>
+        /// ToDo完了
+        /// </summary>
+        /// <param name="id"></param>
+        public void Complete(string id)
+        {
+            var target = this.GetItem(id);
+            target.State = ToDoState.Complete;
+            _repository.Update(target);
         }
     }
 }

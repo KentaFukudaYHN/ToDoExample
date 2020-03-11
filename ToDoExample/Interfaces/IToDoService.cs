@@ -19,7 +19,7 @@ namespace ToDoExample.Interfaces
         /// <summary>
         /// ToDoの一覧取得
         /// </summary>
-        List<ToDoItem> GetToDoItems();
+        List<ToDoItem> GetItemList();
 
         /// <summary>
         /// 登録

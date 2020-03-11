@@ -28,7 +28,7 @@ namespace ToDoExampleTest.Services
             repository.Setup(x => x.GetAll()).Returns((List<ToDoItem>)null);
 
             //取得処理を実行
-            var items = todoService.GetToDoItems();
+            var items = todoService.GetItemList();
 
             //取得処理が呼ばれたか確認
             repository.Verify(x => x.GetAll());

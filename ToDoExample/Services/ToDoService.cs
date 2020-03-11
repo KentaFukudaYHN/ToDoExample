@@ -40,7 +40,7 @@ namespace ToDoExample.Services
         /// ToDoの一覧取得
         /// </summary>
         /// <returns></returns>
-        public List<ToDoItem> GetToDoItems()
+        public List<ToDoItem> GetItemList()
         {
             //ToDoを全件取得
             var items = _repository.GetAll();

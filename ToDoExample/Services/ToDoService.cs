@@ -53,7 +53,7 @@ namespace ToDoExample.Services
         }
 
         /// <summary>
-        /// 登録
+        /// 新規登録
         /// </summary>
         /// <param name="title"></param>
         /// <param name="content"></param>
@@ -66,6 +66,7 @@ namespace ToDoExample.Services
                 ID = Guid.NewGuid().ToString(),
                 Titile = title,
                 Content = content,
+                State = ToDoState.Incomplete,
                 UpdateDateTime = DateTime.Now,
                 RegistDateTime = DateTime.Now
             };
@@ -85,6 +86,7 @@ namespace ToDoExample.Services
                 throw new ArgumentException("IDに一致するToDoがありません");
 
             target.State = ToDoState.Complete;
+            target.UpdateDateTime = DateTime.Now;
             _repository.Update(target);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using Moq;
 using ToDoExample.Entities;
 using ToDoExample.Enums;
@@ -26,14 +27,15 @@ namespace ToDoExampleTest.Services
             //ToDoServiceを生成
             var todoService = new ToDoService(repository.Object);
 
-            //repositoruのGetAllの返り値を設定
-            repository.Setup(x => x.GetAll()).Returns(new List<ToDoItem>());
+            //repositoruのGetBySpecの設定
+            Expression<Func<ToDoItem, bool>> criteria = x => x.State == ToDoState.Incomplete;
+            repository.Setup(x => x.GetBySpec(criteria)).Returns(new List<ToDoItem>());
 
             //取得処理を実行
             todoService.GetItemList();
 
             //取得処理が呼ばれたか確認
-            repository.Verify(x => x.GetAll());
+            repository.Verify(x => x.GetBySpec(It.IsAny<Expression<Func<ToDoItem, bool>>>()));
         }
 
         /// <summary>
@@ -48,14 +50,15 @@ namespace ToDoExampleTest.Services
             //ToDoServiceを生成
             var todoService = new ToDoService(repository.Object);
 
-            //repositoruのGetAllの返り値をnullに設定
-            repository.Setup(x => x.GetAll()).Returns((List<ToDoItem>)null);
+            //repositoruのGetBySpecの返り値をnullに設定
+            Expression<Func<ToDoItem, bool>> criteria = x => x.State == ToDoState.Incomplete;
+            repository.Setup(x => x.GetBySpec(criteria)).Returns((List<ToDoItem>)null);
 
             //取得処理を実行
             var items = todoService.GetItemList();
 
             //取得処理が呼ばれたか確認
-            repository.Verify(x => x.GetAll());
+            repository.Verify(x => x.GetBySpec(It.IsAny<Expression<Func<ToDoItem, bool>>>()));
 
             //取得結果がnullでない事を確認
             Assert.NotEqual(items, null);

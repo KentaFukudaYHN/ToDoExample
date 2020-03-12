@@ -43,8 +43,8 @@ namespace ToDoExample.Services
         /// <returns></returns>
         public List<ToDoItem> GetItemList()
         {
-            //ToDoを全件取得
-            var items = _repository.GetAll();
+            //状態が未完了のToDoを取得
+            var items = _repository.GetBySpec(x => x.State == ToDoState.Incomplete);
 
             if (items == null)
                 return new List<ToDoItem>();

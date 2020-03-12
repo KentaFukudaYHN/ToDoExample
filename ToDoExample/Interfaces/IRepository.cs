@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace ToDoExample.Interfaces
@@ -21,6 +22,13 @@ namespace ToDoExample.Interfaces
         /// </summary>
         /// <returns></returns>
         List<T> GetAll();
+
+        /// <summary>
+        /// 条件を指定して取得
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        List<T> GetBySpec(Expression<Func<T, bool>> criteria);
 
         /// <summary>
         /// 登録

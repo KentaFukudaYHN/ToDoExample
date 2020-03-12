@@ -3,6 +3,8 @@ using ToDoExample.Interfaces;
 using System.Linq;
 using ToDoExample.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+using System;
 
 namespace ToDoExample.Data
 {
@@ -34,6 +36,16 @@ namespace ToDoExample.Data
         public List<T> GetAll()
         {
            return _db.Set<T>().ToList();
+        }
+
+        /// <summary>
+        /// 条件で取得
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public List<T> GetBySpec(Expression<Func<T, bool>> criteria)
+        {
+            return _db.Set<T>().Where(criteria).ToList();
         }
 
         /// <summary>

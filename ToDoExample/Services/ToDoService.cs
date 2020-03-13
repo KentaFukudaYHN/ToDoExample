@@ -85,6 +85,9 @@ namespace ToDoExample.Services
             //更新対象の取得
             var target = _repository.GetById(id);
 
+            if (target == null)
+                throw new ArgumentException("IDに一致するToDoがありません");
+
             //対象を変更
             target.Titile = title;
             target.Content = content;

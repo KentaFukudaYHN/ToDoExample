@@ -182,5 +182,54 @@ namespace ToDoExampleTest.Services
             //ArgumentExeptionの確認
             Assert.Throws<ArgumentException>(completeAction);
         }
+
+        /// <summary>
+        /// ToDo更新テスト
+        /// </summary>
+        [Fact]
+        public void Update()
+        {
+            //repositoryのMockデータを生成
+            var repository = new Mock<IRepository<ToDoItem>>();
+
+            //ToDoServiceを生成
+            var todoService = new ToDoService(repository.Object);
+
+            //repositoryメソッドの設定
+            var updatTarget = new ToDoItem();
+            var id = "testid";
+            repository.Setup(x => x.GetById(id)).Returns(updatTarget);
+            repository.Setup(x => x.Update(updatTarget));
+
+            //更新処理
+            todoService.Update(id, "testTitle", "testContent");
+
+            //repositoryの更新メソッドが実行されたか確認
+            repository.Verify(x => x.Update(updatTarget));
+        }
+
+        /// <summary>
+        /// ToDo更新テスト/存在しないToDoの更新
+        /// </summary>
+        [Fact]
+        public void UpdateWithNotExist()
+        {
+            //repositoryのMockデータを生成
+            var repository = new Mock<IRepository<ToDoItem>>();
+
+            //ToDoServiceを生成
+            var todoService = new ToDoService(repository.Object);
+
+            //repositoryメソッドの設定
+            var updatTarget = new ToDoItem();
+            var id = "testid";
+            repository.Setup(x => x.GetById(id)).Returns(null as ToDoItem);
+
+            //更新処理
+            Action updateAction = () => todoService.Update(id, "testTitle", "testContent");
+
+            //ArgumentExceptionの確認
+            Assert.Throws<ArgumentException>(updateAction);
+        }
     }
 }

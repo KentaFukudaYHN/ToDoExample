@@ -75,6 +75,25 @@ namespace ToDoExample.Services
         }
 
         /// <summary>
+        /// 更新
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="title"></param>
+        /// <param name="content"></param>
+        public void Update(string id, string title, string content)
+        {
+            //更新対象の取得
+            var target = _repository.GetById(id);
+
+            //対象を変更
+            target.Titile = title;
+            target.Content = content;
+            target.UpdateDateTime = DateTime.Now;
+
+            _repository.Update(target);
+        }
+
+        /// <summary>
         /// ToDo完了
         /// </summary>
         /// <param name="id"></param>

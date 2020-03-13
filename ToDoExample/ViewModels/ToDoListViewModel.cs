@@ -11,14 +11,14 @@ namespace ToDoExample.ViewModels
         /// <summary>
         /// ToDoItemの項目
         /// </summary>
-        public List<ToDoItemViewModel> Items { get; }
+        public List<ToDoListItemViewModel> Items { get; }
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
         public ToDoListViewModel(List<ToDoItem> todoItems)
         {
-            Items = todoItems.ConvertAll(x => new ToDoItemViewModel(x));
+            Items = todoItems.ConvertAll(x => new ToDoListItemViewModel(x));
         }
     }
 }

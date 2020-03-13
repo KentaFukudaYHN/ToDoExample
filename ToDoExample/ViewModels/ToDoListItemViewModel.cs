@@ -7,7 +7,7 @@ namespace ToDoExample.ViewModels
     /// <summary>
     /// ToDoのViewModel
     /// </summary>
-    public class ToDoItemViewModel
+    public class ToDoListItemViewModel
     {
         private ToDoItem _entity;
 
@@ -19,19 +19,12 @@ namespace ToDoExample.ViewModels
         /// <summary>
         /// タイトル
         /// </summary>
-        [DisplayName("タイトル")]
         public string Title => _entity.Titile;
-
-        /// <summary>
-        /// 内容
-        /// </summary>
-        [DisplayName("内容")]
-        public string Content => _entity.Content;
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public ToDoItemViewModel(ToDoItem entity)
+        public ToDoListItemViewModel(ToDoItem entity)
         {
             _entity = entity;
         }

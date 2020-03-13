@@ -1,20 +1,28 @@
-﻿@model ToDoItemViewModel
+﻿@model ToDoDetailViewModel
 
 <style>
 .hide {
     display:none;
 }
+.navbar-heder{
+    display:flex;
+}
+.navbar-header-btn{
+    margin-right:10px;
+}
 </style>
 
-<div>
+<div class="navbar-heder">
     @using (Html.BeginForm("Complete", "ToDo", FormMethod.Post))
     {
         @Html.HiddenFor(x => x.ID);
-        <input type="submit" id="complateBtn" class="btn-success" value="完了" />
+        <input type="submit" id="complateBtn" class="btn-primary navbar-header-btn" value="完了" />
     }
+
+    <button id="updateModeBtn" class="btn-success navbar-header-btn">編集モード</button>
 </div>
 
-@using (Html.BeginForm(new { @class = "detail-form" }))
+@using (Html.BeginForm())
 {
     <div class="form-group">
         @Html.LabelFor(x => x.Title)
@@ -25,5 +33,34 @@
         @Html.LabelFor(x => x.Content)
         @Html.TextAreaFor(x => x.Content, new { @class = "form-control", @readonly = "readonly" })
     </div>
-    <input type="submit" value="登録" class="form-control hide">
+    <input id="updateBtn" type="submit" value="登録" class="form-control hide">
 }
+
+<script>
+    let isUpdateMode = false;
+    @*編集モード切替ボタンクリック*@
+    $('#updateModeBtn').on('click', function ()
+    {
+        const $formControls = $('.form-control');
+        const $updateBtn = $('#updateBtn');
+        const $updateModeBtn = $('#updateModeBtn');
+
+        if (isUpdateMode) {
+            $formControls.attr('readonly', true);
+            $updateBtn.hide();
+            $updateModeBtn
+                .text("編集モード")
+                .addClass("btn-success")
+                .removeClass("btn-warning");
+        } else {
+            $formControls.attr('readonly', false);
+            $updateBtn.show();
+            $updateModeBtn
+                .text("編集モード解除")
+                .addClass("btn-warning")
+                .removeClass("btn-success");
+        }
+
+        isUpdateMode = !isUpdateMode;
+    })
+</script>

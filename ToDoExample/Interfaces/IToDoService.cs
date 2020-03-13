@@ -29,6 +29,14 @@ namespace ToDoExample.Interfaces
         void Regist(string title, string content);
 
         /// <summary>
+        /// 更新
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="title"></param>
+        /// <param name="content"></param>
+        void Update(string id, string title, string content);
+
+        /// <summary>
         /// ToDo完了
         /// </summary>
         /// <param name="id"></param>
